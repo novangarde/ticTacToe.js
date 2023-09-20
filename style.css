@@ -1,5 +1,6 @@
 #game {
   border-collapse: collapse;
+  margin: 0 auto;
 }
 
 #game td {

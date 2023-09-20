@@ -37,26 +37,18 @@ const ticTacToe = {
   },
 
   cellClickHandler(event) {
-    const row = event.target.dataset.row;
-    const col = event.target.dataset.col;
-
     if (!this.isClickCorrect(event)) {
       return;
     }
 
-    this.mapValues[row][col] = this.phase;
-    event.target.textContent = this.phase;
+    this.fillCell(event);
 
     if (this.hasWon()) {
-      this.status = "stopped";
-      alert(`Победили ${this.phase}-ки`);
+      this.sayStatusStopped();
+      this.sayWonPhrase();
     }
-
-    if (this.phase === "X") {
-      this.phase = "0";
-    } else {
-      this.phase = "X";
-    }
+    
+    this.switchPhase();
   },
 
   isClickCorrect(event) {
@@ -71,6 +63,18 @@ const ticTacToe = {
 
   isStatusPlaying() {
     return this.status === "playing";
+  },
+
+  fillCell(event) {
+    const row = event.target.dataset.row;
+    const col = event.target.dataset.col;
+    
+    this.mapValues[row][col] = this.phase;
+    event.target.textContent = this.phase;
+  },
+
+  sayStatusStopped() {
+    this.status = "stopped";
   },
 
   hasWon() {
@@ -95,4 +99,13 @@ const ticTacToe = {
       this.mapValues[c.y][c.x];
     return value === "XXX" || value === "000";
   },
+
+  sayWonPhrase() {
+    const figure = this.phase === "X" ? "крестики" : "нолики";
+    setTimeout(() => alert(`Победили ${figure}`), 1);
+  },
+
+  switchPhase() {
+    this.phase = this.phase === "X" ? "0" : "X";
+  }
 };
