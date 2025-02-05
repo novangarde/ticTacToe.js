@@ -10,6 +10,6 @@ First step made by crosses, then players play after each other. When one of the 
 
 Open the `index.html` file in your browser.
 
-##
+## Restart
 
 Refresh the page to restart.
